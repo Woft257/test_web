@@ -10,6 +10,7 @@ import { LoadingScreen } from "@/components/loading-screen";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [address, setAddress] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState<{ walletAddress?: string; name?: string } | null>(null);
@@ -46,6 +47,7 @@ const Header = () => {
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!address.trim()) return;
+
     if (address) {
       router.push(`/search/?address=${address}`);
     }
@@ -54,7 +56,7 @@ const Header = () => {
 
     try {
       // Simulate loading time (can be replaced with actual API call)
-      await new Promise((resolve) => setTimeout(resolve, 2500));
+      await new Promise(resolve => setTimeout(resolve, 2500));
       router.push(`/search/?address=${encodeURIComponent(address)}`);
     } catch (error) {
       console.error("Search error:", error);
@@ -113,6 +115,9 @@ const Header = () => {
           <Link href="/" className="text-white text-sm hover:text-[#F5B056] transition">
             Home
           </Link>
+          <Link href="/pricetable" className="text-sm hover:text-[#F5B056] transition" onClick={() => setIsOpen(false)}>
+                PriceTable
+            </Link>
           <Link href="/transactions" className="text-white text-sm hover:text-[#F5B056] transition">
             Transactions
           </Link>
@@ -125,6 +130,7 @@ const Header = () => {
 
           {/* Improved Search Form without button */}
           <form onSubmit={handleSearch} className="relative">
+
             {/* Search icon that navigates to search page on click */}
             <button
               type="button"
@@ -152,6 +158,7 @@ const Header = () => {
                 <X size={12} />
               </button>
             )}
+
           </form>
 
           {currentUser ? (
@@ -160,7 +167,7 @@ const Header = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center text-white text-xs uppercase hover:text-[#F5B056] transition"
               >
-                {currentUser.name || formatWalletAddress(currentUser.walletAddress || '')}
+                 {currentUser.name || formatWalletAddress(currentUser.walletAddress || '')}
                 <svg
                   className="w-4 h-4 ml-1"
                   fill="currentColor"
@@ -168,7 +175,7 @@ const Header = () => {
                 >
                   <path
                     fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                     clipRule="evenodd"
                   />
                 </svg>
@@ -206,6 +213,9 @@ const Header = () => {
               <Link href="/" className="text-sm uppercase hover:text-[#F5B056] transition" onClick={() => setIsOpen(false)}>
                 Home
               </Link>
+              <Link href="/pricetable" className="text-sm uppercase hover:text-[#F5B056] transition" onClick={() => setIsOpen(false)}>
+                Pricetable
+              </Link>
               <Link href="/transactions" className="text-sm uppercase hover:text-[#F5B056] transition" onClick={() => setIsOpen(false)}>
                 Transactions
               </Link>
@@ -215,18 +225,19 @@ const Header = () => {
               <a href="mailto:cryptopath@gmail.com" className="text-sm uppercase hover:text-[#F5B056] transition" onClick={() => setIsOpen(false)}>
                 Support
               </a>
+              
 
               {/* Improved Mobile Search Form without button */}
               <form onSubmit={handleSearch} className="relative w-3/4 mx-auto mt-4 pt-2">
                 {/* Search icon that navigates to search page on click */}
-                <button
-                  type="button"
-                  onClick={handleSearchIconClick}
+                <button 
+                  type="button" 
+                  onClick={handleSearchIconClick} 
                   className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
                 >
                   <Search size={18} />
                 </button>
-
+                
                 <Input
                   type="text"
                   placeholder="Search wallet..."
@@ -234,7 +245,7 @@ const Header = () => {
                   onChange={(e) => setAddress(e.target.value)}
                   className="pl-10 pr-10 py-2 w-full text-black transition-all duration-200 focus:border-amber-500"
                 />
-
+                
                 {address.length > 0 && (
                   <button
                     type="button"
@@ -246,11 +257,11 @@ const Header = () => {
                   </button>
                 )}
               </form>
-
+              
               {currentUser ? (
                 <div className="relative flex justify-center mt-4 pt-2">
                   <Link href="/search" className="text-white text-xs uppercase hover:text-[#F5B056]">
-                    {currentUser.name}
+                    {currentUser.name || formatWalletAddress(currentUser.walletAddress || '')}
                   </Link>
                   <button
                     onClick={handleLogout}

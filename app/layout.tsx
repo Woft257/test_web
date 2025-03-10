@@ -3,8 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import "./globals.css";
 import { SplashScreen } from '@/components/SplashScreen';
+import QueryProvider from "./QueryProvider"; // ✅ Import Client Component
+import "./globals.css";
 import { Toaster } from 'react-hot-toast';
 import { WalletProvider } from '@/components/Faucet/walletcontext'; // Thêm WalletProvider
 
@@ -55,11 +56,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <WalletProvider> {/* Bao bọc bằng WalletProvider */}
-          <SplashScreen />
-          <Header />
-          {children}
-          <Toaster position="top-center" />
-          <Footer />
+          <QueryProvider> {/* ✅ Bọc bên trong Client Component */}
+            <SplashScreen />
+            <Header />
+            {children}
+            <Toaster position="top-center" />
+            <Footer />
+          </QueryProvider>
         </WalletProvider>
       </body>
     </html>

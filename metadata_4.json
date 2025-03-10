@@ -1,0 +1,18 @@
+{
+  "name": "Joke over",
+  "image": "https://gateway.pinata.cloud/ipfs/bafkreia2ot2m4gzk65jdfkqrd65ipcpse6irabczgqygmkuduptcvyexbi",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Collection",
+      "value": "CryptoPath Genesis"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Your Name/Username"
+    }
+  ]
+}
