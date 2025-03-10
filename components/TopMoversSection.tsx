@@ -96,7 +96,7 @@ export const TopMoversSection = () => {
 
   return (
     <section id="gainers" className="py-16 bg-gradient-to-b from-secondary/20 to-secondary/50">
-      <style jsx>{`
+      <style gobal jsx>{`
         .section-title {
           background: linear-gradient(90deg, #f6b355, #9333ea);
           -webkit-background-clip: text;

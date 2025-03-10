@@ -33,7 +33,7 @@ const CoinCard: React.FC<CoinCardProps> = ({ coin, onCardClick }) => {
       onClick={handleCardClick}
       className="crypto-card p-5 flex flex-col h-full pulse-glow cursor-pointer relative glass-dark rounded-xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(245,176,86,0.4)] hover:border-orange-500/80 hover:-translate-y-2"
     >
-      <style jsx>{`
+      <style jsx global>{`
         .crypto-card {
           border: 2px solid #f6b355;
           overflow: hidden;
